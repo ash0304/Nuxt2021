@@ -1,7 +1,9 @@
 <template>
-  <Tutorial/>
+  <section class="container">
+    <h1>Hello, I'm a first Vue/Nuxt</h1>
+  </section>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
