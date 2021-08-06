@@ -3,35 +3,16 @@
     <section class="intro">
       <h1>Get the lastest tech new!</h1>
     </section>
-    <section class="featured-posts">
-      <PostPreview
-        id="1"
-        thumbnail="https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
-        title="Hello there!"
-        previewText="This is my first post!"
-      />
-      <PostPreview
-        id="2"
-        thumbnail="https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
-        title="Hello there!"
-        previewText="This is my second post!"
-      />
-      <PostPreview
-        id="3"
-        thumbnail="https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
-        title="Hello there!"
-        previewText="This is my third post!"
-      />
-    </section>
+    <PostList />
   </div>
 </template>
 
 <script>
-import PostPreview from "~/components/Posts/PostPreview.vue";
+import PostList from "~/components/Posts/PostList.vue";
 
 export default {
   components: {
-    PostPreview
+    PostList
   }
 };
 </script>
@@ -65,14 +46,5 @@ export default {
   .intro h1 {
     font-size: 2rem;
   }
-}
-
-.featured-posts {
-  display: flex;
-  padding: 20px;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
 }
 </style>
