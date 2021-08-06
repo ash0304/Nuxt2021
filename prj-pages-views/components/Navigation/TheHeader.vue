@@ -87,6 +87,7 @@ export default {
   color: white;
 }
 
+/* nuxt-link-active for active use  */
 .nav-item a:hover,
 .nav-item a:active,
 .nav-item a.nuxt-link-active {
