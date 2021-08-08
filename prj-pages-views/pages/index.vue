@@ -3,7 +3,7 @@
     <section class="intro">
       <h1>Get the lastest tech new!</h1>
     </section>
-    <PostList />
+    <PostList :posts="loadedPosts" />
   </div>
 </template>
 
@@ -13,6 +13,33 @@ import PostList from "~/components/Posts/PostList.vue";
 export default {
   components: {
     PostList
+  },
+  data() {
+    return {
+      loadedPosts: [
+        {
+          id: '1',
+          title: "First Post",
+          previewText: "This is our first post!",
+          thumbnail:
+            "https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
+        },
+        {
+          id: '2',
+          title: "Second Post",
+          previewText: "This is our Second post!",
+          thumbnail:
+            "https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
+        },
+        {
+          id: '3',
+          title: "Third Post",
+          previewText: "This is our Third post!",
+          thumbnail:
+            "https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
+        }
+      ]
+    };
   }
 };
 </script>
