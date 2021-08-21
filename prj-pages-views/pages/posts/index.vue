@@ -1,6 +1,6 @@
 <template>
   <div class="posts-page">
-    <PostList />
+    <PostList :posts="loadedPosts" />
   </div>
 </template>
 
@@ -9,6 +9,28 @@ import PostList from "~/components/Posts/PostList.vue";
 export default {
   components: {
     PostList
+  },
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        loadedPosts: [
+          {
+            id: "1",
+            title: "First Post",
+            previewText: "This is our first post!",
+            thumbnail:
+              "https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
+          },
+          {
+            id: "2",
+            title: "Second Post",
+            previewText: "This is our Second post!",
+            thumbnail:
+              "https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
+          }
+        ]
+      });
+    }, 1000);
   }
 };
 </script>
