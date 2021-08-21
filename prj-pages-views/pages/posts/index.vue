@@ -11,8 +11,11 @@ export default {
     PostList
   },
   asyncData(context, callback) {
+    return new Promise().catch(e => {
+      context.error(new Error());
+    });
     setTimeout(() => {
-      callback(null, {
+      callback(new Error(), {
         loadedPosts: [
           {
             id: "1",
