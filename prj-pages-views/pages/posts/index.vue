@@ -10,39 +10,10 @@ export default {
   components: {
     PostList
   },
-  asyncData(context) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          loadedPosts: [
-            {
-              id: "1",
-              title: "First Post",
-              previewText: "This is our first post!",
-              thumbnail:
-                "https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
-            },
-            {
-              id: "2",
-              title: "Second Post",
-              previewText: "This is our Second post!",
-              thumbnail:
-                "https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
-            }
-          ]
-        });
-      }, 1000);
-    })
-      .then(data => {
-        return data;
-      })
-      .catch(e => {
-        context.error(new Error());
-      });
-  },
-  created() {
-    this.$store.dispatch('setPosts', this.loadedPosts);
-    console.log(this.$store.getters.loadedPosts);
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts;
+    }
   }
 };
 </script>
