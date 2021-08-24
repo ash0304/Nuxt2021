@@ -1,7 +1,7 @@
 <template>
   <div class="admin-new-post-page">
     <section class="new-post-form">
-      <AdminPostForm />
+      <AdminPostForm @submit="onSubmitted" />
     </section>
   </div>
 </template>
@@ -11,6 +11,11 @@ import AdminPostForm from "~/components/Admin/AdminPostForm";
 export default {
   components: {
     AdminPostForm
+  },
+  methods: {
+    onSubmitted(postData) {
+      console.log(postData);
+    }
   }
 };
 </script>
