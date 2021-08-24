@@ -1,4 +1,5 @@
 import Vuex from "vuex";
+import axios from "axios";
 
 const createStore = () => {
   return new Vuex.Store({
@@ -12,30 +13,20 @@ const createStore = () => {
     },
     actions: {
       nuxtServerInit(vuexContext, context) {
-        // if (!process.client) {
-        //   console.log('test', context.req.session);
-        // }
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            vuexContext.commit("setPosts", [
-              {
-                id: "1",
-                title: "First Post",
-                previewText: "This is our first post!",
-                thumbnail:
-                  "https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
-              },
-              {
-                id: "2",
-                title: "Second Post",
-                previewText: "This is our Second post!",
-                thumbnail:
-                  "https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
-              }
-            ]);
-            resolve();
-          }, 1000);
-        });
+        return axios
+          .get(
+            "https://nuxt-blog-4fd31-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json"
+          )
+          .then(res => {
+            const postsArray = [];
+            for (const key in res.data) {
+              postsArray.push({ ...res.data[key], id: key });
+            }
+            vuexContext.commit("setPosts", postsArray);
+          })
+          .catch(e => {
+            context.error(e);
+          });
       },
       setPosts(vuexContext, posts) {
         vuexContext.commit("setPosts", posts);
