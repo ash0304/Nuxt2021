@@ -6,6 +6,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 import AdminPostForm from "~/components/Admin/AdminPostForm";
 
 export default {
@@ -14,7 +15,17 @@ export default {
   },
   methods: {
     onSubmitted(postData) {
-      console.log(postData);
+      axios
+        .post(
+          "https://nuxt-blog-4fd31-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json",
+          postData
+        )
+        .then(result => {
+          console.log(result);
+        })
+        .catch(e => {
+          console.log(e);
+        });
     }
   }
 };
