@@ -7,22 +7,26 @@
 </template>
 
 <script>
+import axios from "axios";
 import AdminPostForm from "~/components/Admin/AdminPostForm";
 
 export default {
   components: {
     AdminPostForm
   },
-  data() {
-    return {
-      loadedPost: {
-        author: "Ash",
-        title: "My awesome Post",
-        content: "Super amazing. Thanks for that!",
-        thumbnailLink:
-          "https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
-      }
-    };
+  asyncData(context) {
+    return axios
+      .get(
+        `https://nuxt-blog-4fd31-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${context.params.postId}.json`
+      )
+      .then(res => {
+        return {
+          loadedPost: res.data
+        };
+      })
+      .catch(e => {
+        context.error(e);
+      });
   }
 };
 </script>
