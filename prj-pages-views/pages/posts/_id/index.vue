@@ -24,22 +24,22 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  asyncData(context, callback) {
-    setTimeout(() => {
-      callback(null, {
-        loadedPost: {
-          id: "1",
-          title: `First Post (ID: ${context.route.params.id})`,
-          previewText: "This is our first post!",
-          author: "Ash",
-          updatedDate: new Date(),
-          content: "Some dummy text which is definitely not the preview text",
-          thumbnail:
-            "https://www.hydrocarbons-technology.com/wp-content/uploads/sites/9/2020/09/shutterstock_1152185600-1440x1008-1-857x600.jpg"
-        }
+  asyncData(context) {
+    return axios
+      .get(
+        `https://nuxt-blog-4fd31-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${context.params.id}.json`
+      )
+      .then(res => {
+        return {
+          loadedPost: res.data
+        };
+      })
+      .catch(e => {
+        context.error(e);
       });
-    }, 1000);
   }
 };
 </script>
